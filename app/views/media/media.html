@@ -32,19 +32,40 @@
                 </div>
                 <!--/ media card-->
 
+                <!--product details-->
                 <div class="col-sm-12 col-md-5">
 
                     <div class="row">
-                        <div class="box">
+                        <div class="box col-md-12">
                             <div class="box-header primary">
-                                <div class="md-form-group float-label">
-                                    <input class="md-input" value="Graffiti #1">
+                                <div class="md-form-group">
+                                    <input class="md-input" value="Graffiti #1" style="">
                                     <label>Title</label>
                                 </div>
-                                <small>Sub title goes here with small font</small>
                             </div>
                             <div class="box-body">
-                                <p class="m-a-0">Description</p>
+                                <p class="m-a-0">Details</p>
+
+                                <div class="md-form-group">
+                                    <input class="md-input" autocomplete="off" style="">
+                                    <label>Price</label>
+                                </div>
+                                <div class="md-form-group">
+                                    <textarea class="md-input" rows="2" autocomplete="off" style=""></textarea>
+                                    <label>Description</label>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label">Category</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control">
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <label class="md-switch">
+                                    <input type="checkbox"> <i class="primary"></i>
+                                    Listed
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -94,6 +115,10 @@
                     </div>
                 </div>
                 <!--Arts-->
+                <span class="label label-lg primary pos-rlt m-r-xs">
+                    <b class="arrow bottom b-primary"></b>
+                    You may also like
+                </span><br><br>
                 <div class="col-md-12">
                     <div class="row">
                         <media-card media="art" class="col-md-3" ng-repeat="art in arts"></media-card>

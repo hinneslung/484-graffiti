@@ -32,7 +32,6 @@
 				    id: currIndex++
 			    });
 		    };
-
 		    $scope.addSlide();
 
 		    $scope.categories = [{title: "Cat 1"}, {title: "Cat 2"}, {title: "Cat 3"}];
