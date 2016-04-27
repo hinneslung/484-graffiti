@@ -12,7 +12,11 @@
         var vm = this;
         vm.dict = dictionary();
         vm.title = 'MediaCtrl';
-        vm.media = {};
+
+        $scope.media = {
+            id: 0,
+            image_url: "images/0.jpg"
+        };
 
         $scope.arts = [];
         for (var i = 0; i < 5; i++) {
@@ -24,4 +28,3 @@
         }
     }
 })();
-

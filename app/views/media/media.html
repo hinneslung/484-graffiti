@@ -8,9 +8,9 @@
                 <div class="col-sm-12 col-md-7">
                     <div class="box">
                         <div class="item dark">
-                            <img ng-src="{{ vm.media.image_url }}" class="w-full">
+                            <img ng-src="{{ media.image_url }}" class="w-full">
                         </div>
-                        <div class="pull-right" ng-show="vm.showMediaActions()">
+                        <div class="pull-right">
                             <a class="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset"
                                ng-click="vm.toggleBookmark()" ng-class="{ 'red': vm.isBookmarked, 'white': !vm.isBookmarked }">
                                 <i class="material-icons md-24" ng-show="vm.isBookmarked">&#xe866;</i>
@@ -23,9 +23,9 @@
                         </div>
                         <div class="p-a">
                             <div class="text-muted m-b-xs">
-                                <span class="m-r">{{ vm.media.created_time | date: 'medium' }}</span>
+                                <span class="m-r">{{ media.created_time | date: 'medium' }}</span>
                             </div>
-                            <p ng-bind-html="vm.media.caption | caption"></p>
+                            <p ng-bind-html="media.caption | caption"></p>
                         </div>
                     </div>
 
@@ -37,21 +37,11 @@
                     <div class="row">
                         <div class="box">
                             <div class="box-header primary">
-                                <h3>Box Header</h3>
-                                <small>Sub title goes here with small font</small>
-                                <div class="box-tool">
-                                    <ul class="nav">
-                                        <li class="nav-item inline"><a class="nav-link"><i class="material-icons md-18"></i></a></li>
-                                        <li class="nav-item inline dropdown">
-                                            <a class="nav-link" data-toggle="dropdown"><i class="material-icons md-18"></i></a>
-                                            <div class="dropdown-menu dropdown-menu-scale pull-right">
-                                                <a class="dropdown-item" href="">Action</a> <a class="dropdown-item" href="">Another action</a> <a class="dropdown-item" href="">Something else here</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item">Separated link</a>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="md-form-group float-label">
+                                    <input class="md-input" value="Graffiti #1">
+                                    <label>Title</label>
                                 </div>
+                                <small>Sub title goes here with small font</small>
                             </div>
                             <div class="box-body">
                                 <p class="m-a-0">Description</p>
