@@ -1,0 +1,49 @@
+<div ng-controller="LoginCtrl as vm">
+    <div class="dark bg-auto w-full ng-scope">
+        <div class="navbar">
+            <div class="pull-center">
+                <!-- brand -->
+                <a href='/client_v2/app' class="navbar-brand ng-scope" style="margin-top: 24px">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
+                        <path d="M 4 4 L 44 4 L 44 44 Z" fill="#a88add"></path>
+                        <path d="M 4 4 L 34 4 L 24 24 Z" fill="rgba(0,0,0,0.15)"></path>
+                        <path d="M 4 4 L 24 4 L 4  44 Z" fill="#0cc2aa"></path>
+                    </svg>
+                    <!--<img src="../assets/images/logo.png" alt="." class="hide">-->
+                    <span class="hidden-folded inline ng-binding">HolyGrab!</span>
+                </a>
+                <!-- / brand -->
+            </div>
+        </div>
+        <div class="padding ng-scope">
+            <div class="p-x-lg">
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="row no-gutter">
+                            <div class="col-sm-6 col-sm-push-3">
+                                <div class="box m-t-n">
+                                    <div class="box-body text-center r-t primary">
+                                        <!--<h6 class="text-u-c p-v-sm m-a-0 m-t">Business</h6>-->
+                                        <h3 class="m-a-0 m-v">{{typeString}}</h3>
+                                    </div>
+                                    <ul class="list b-t b-b m-a-0 no-radius light">
+                                        <li class="list-item" ng-repeat="advantage in advantages" style="color: dimgrey;">
+                                            <div class="list-body">
+                                                <i class="fa fa-check text-success m-r-xs"></i> {{advantage}}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="text-center p-a-md light">
+                                        <a href class="btn btn-block btn-lg light-blue-900" ng-click="login();">
+                                            <i class="fa fa-instagram"></i><span class="hidden-md"> Sign in with Instagram</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

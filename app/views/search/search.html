@@ -1,0 +1,41 @@
+<div ng-controller="SearchCtrl as vm">
+    <nav-bar delegate="vm"></nav-bar>
+    <div class="container" style="padding-top:72px">
+
+        <div class="col-md-12 input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Type keyword" autocomplete="off"
+                   ng-model="vm.searchText" ng-change="vm.searchFieldChanged()"
+                   bs-options="k.keyword as k.keyword for k in vm.suggestKeyword($viewValue)"
+                   data-animation="am-flip-x" bs-typeahead="" autocomplete="off">
+                <span class="input-group-btn">
+                    <button class="btn b-a no-shadow white" type="button" ng-click="vm.goSearch();">Search Everywhere!</button>
+                </span>
+        </div>
+
+        <!--Shops-->
+        <div>
+            <div class="row">
+                    <span class="label label-lg primary pos-rlt m-r-xs">
+                        <b class="arrow bottom b-primary"></b>
+                        #{{vm.dict.hotMedia}}
+                    </span>
+            </div>
+            <div class="row" style="padding-top: 12px">
+                <shop-card shop="s" class="col-md-2" ng-repeat="s in vm.shops"></shop-card>
+            </div>
+        </div>
+
+        <!--Media-->
+        <div>
+            <div class="row" style="padding-top: 12px">
+                    <span class="label label-lg primary pos-rlt m-r-xs">
+                        <b class="arrow bottom b-primary"></b>
+                        #{{vm.dict.hotMedia}}
+                    </span>
+            </div>
+            <div class="row" style="padding-top: 12px">
+                <media-card media="m" class="col-md-2" ng-repeat="m in vm.media"></media-card>
+            </div>
+        </div>
+    </div>
+</div>

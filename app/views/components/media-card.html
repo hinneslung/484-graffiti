@@ -1,0 +1,26 @@
+<div>
+    <div class="box">
+        <div class="item dark">
+            <div style="position:relative; overflow:hidden; padding-bottom:100%;">
+                <a href ui-sref="public.media({ mediaId: vm.media._id })">
+                    <img ng-src="{{ vm.media.preview_url }}" class="w-full img-responsive" style="position:absolute;">
+                </a>
+            </div>
+            <!--<div class="bottom gd-overlay p-a-xs">-->
+            <!--<a href="#/shop/{{vm.media.shop.username}}" class="text-md block p-x-sm">{{ vm.media.shop.username }}</a>-->
+            <!--</div>-->
+        </div>
+        <a class="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right primary"
+           ui-sref="private.chat({ buddyUsername: vm.media.shop.username, mediaId: vm.media._id })"
+           ng-if="showAddToCart()">
+            <i class="material-icons md-24">&#xe854;</i>
+        </a>
+        <div class="p-a">
+            <div><a href="#/shop/{{vm.media.shop.username}}" class="_800">{{ vm.media.shop.username }}</a></div>
+            <div class="text-muted m-b-xs">
+                <span class="m-r">{{ vm.media.created_time | date: 'medium' }}</span>
+            </div>
+            <!--<p class="h-2x" ng-bind-html="vm.media.caption | caption"></p>-->
+        </div>
+    </div>
+</div>

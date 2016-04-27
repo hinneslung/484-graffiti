@@ -1,0 +1,79 @@
+<div ng-controller="HomeCtrl as vm">
+    <nav-bar delegate="vm"></nav-bar>
+    <!--<div ui-include="views/components/media-card.html"></div>-->
+    <div class="container-fluid" style="padding-top:72px; max-width: 1024px;">
+
+        <!--carousel-->
+        <div class="row">
+            <div class="col-md-12">
+
+                <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                    <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                        <img ng-src="{{slide.image}}" style="margin:auto;">
+                        <div class="carousel-caption">
+                            <h4>Slide {{slide.id}}</h4>
+                            <p>{{slide.text}}</p>
+                        </div>
+                    </uib-slide>
+                </uib-carousel>
+
+            </div>
+        </div>
+
+        <br>
+
+        <!--Arts-->
+        <div class="row">
+            <!--categories-->
+            <div class="col-md-3">
+                <div class="nav-active-border b-info left box">
+                    <ul class="nav nav-sm">
+                        <li class="nav-item" ng-repeat="cat in categories">
+                            <a class="nav-link active" href="">{{ cat.title }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Arts-->
+            <div class="col-md-9">
+                <div class="row">
+                    <media-card media="art" class="col-md-3" ng-repeat="art in arts"></media-card>
+                </div>
+            </div>
+        </div>
+
+        <!--Artists-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <shop-card shop="artist" class="col-md-3" ng-repeat="artist in artists"></shop-card>
+                </div>
+            </div>
+        </div>
+
+        <!--Artists-->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="item">
+                        <img src="../assets/images/c7.jpg" class="w-full">
+                    </div>
+                    <div class="p-a">
+                        <div class="text-muted m-b-xs"><a href="" class="m-r"><i class="fa fa-heart-o"></i> 34</a> <a href=""><i class="fa fa-bookmark-o"></i> 20</a></div>
+                        <div class="m-b h-2x"><a href="" class="_800">15 Recipes to Make the Most of Tomatoes</a></div>
+                        <div class="m-b h-3x">
+                            <div class="m-b-sm">Liked:</div>
+                            <a href=""><img src="../assets/images/a0.jpg" class="w-32 rounded"></a>
+                            <a href=""><img src="../assets/images/a1.jpg" class="w-32 rounded"></a>
+                            <a href=""><img src="../assets/images/a2.jpg" class="w-32 rounded"></a>
+                            <a href=""><img src="../assets/images/a3.jpg" class="w-32 rounded"></a>
+                            <a class="btn btn-sm danger rounded"><i class="fa fa-plus"></i> 99</a>
+                        </div>
+                        <div><a href="" class="btn btn-xs white">Read More</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,206 @@
+<div ng-controller="ChatCtrl as vm">
+    <!--<div class="app-header">-->
+    <!--<nav-bar delegate="vm"></nav-bar>-->
+    <!--</div>-->
+    <div class="app-body-inner app-content">
+        <div class="row-col row-col-xs b-b">
+            <!-- Chat List -->
+            <div class="col-md-2 white bg b-r">
+                <div class="box row-col">
+                    <div class="box-header b-b">
+                        <div class="input-group">
+                            <span class="input-group-addon no-border no-bg"><i class="fa fa-search"></i></span>
+                            <input type="text" ng-model="vm.chatsSearchText" class="form-control no-border no-bg" placeholder="Search all contacts">
+                        </div>
+                    </div>
+                    <div class="row-row">
+                        <div class="row-body scrollable hover">
+                            <div class="row-inner">
+                                <div class="list inset">
+                                    <a class="list-item pointer"
+                                       ng-repeat="c in vm.chats | filter:vm.chatsSearchText"
+                                       ng-class="{'bg-faded': c.shop.username == vm.buddy.username}"
+                                       ng-click="vm.switchBuddy(c.shop)">
+                                        <div class="list-left">
+                                            <span class="w-40 avatar">
+                                                <img ng-src="{{ c.shop.profile_picture_url }}" class="img-circle">
+				                                <i class="on b-white bottom" ng-show="c.last_message.read"></i>
+                                            </span>
+                                        </div>
+                                        <div class="list-body">
+                                            {{ c.shop.username }}
+                                            <small class="block">
+                                                <span ng-if="c.last_message.sender == 'user'">me:</span>
+                                                {{ c.last_message.content }}
+                                            </small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Chats List -->
+
+
+            <!-- Trade Status -->
+            <div class="col-md-4 white bg b-r">
+                <div class="box row-col">
+                    <div class="box-header b-b">
+                        <h3>Orders</h3>
+                    </div>
+                    <div class="list-group">
+                        <div ng-repeat="order in vm.chat.orders">
+                            <a href class="list-group-item b-l-primary">
+                                Order #{{ order._id }}
+                                <div class="pull-right">
+                                    <span class=" label info">{{ order.media.length }}</span>
+	                                <span class="nav-caret text-muted" ng-click="vm.toggle(order)">
+	                                    <i class="fa fa-caret-down"></i>
+	                                </span>
+                                </div>
+                            </a>
+                            <!--media in order-->
+                            <ul class="list inset m-a-0" ng-if="order.showMedia">
+                                <li class="list-item list-group-item active b-l-primary" ng-repeat="m in order.media">
+                                    <a herf class="list-left">
+								            <span class="w-40 avatar">
+									            <img ng-src="{{ m.thumbnail_url}}">
+									            <i class="on bottom b-white"></i>
+								            </span>
+                                    </a>
+                                    <div class="list-body">
+                                        <span class="pull-right label info">{{ m.quantity }}</span>
+                                        <div>Media #{{ m._id }}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Trade Status-->
+
+            <!-- Chat room -->
+            <div class="col-md-6">
+                <div class="box row-col" style="min-height:450px" ng-if="!vm.buddy">
+                    <div class="box-header b-b">
+                        <h3>Void</h3>
+                    </div>
+                    <div class="box-body">
+                        <h2 class="pull-center padding margin">Stop pretending you are talking to someone</h2>
+                    </div>
+                </div>
+                <div class="box row-col" style="min-height:450px" ng-if="vm.buddy">
+                    <div class="box-header b-b">
+                        <strong>{{ vm.buddy.username }}</strong>
+                    </div>
+                    <div class="row-row dker">
+                        <div class="row-body"  scroll-glue>
+                            <div class="row-inner">
+                                <div class="p-a-md" >
+                                    <div class="m-b" ng-repeat="m in vm.messages.slice().reverse()">
+                                        <!--text message-->
+                                        <div ng-if="m.type == 'text'">
+                                            <a href ng-class="{ 'pull-right w-40 m-l-sm': vm.isSelf(m.sender), 'pull-left w-40 m-r-sm': !vm.isSelf(m.sender) }">
+                                                <img src="../assets/images/a3.jpg" class="w-full img-circle" alt="...">
+                                            </a>
+                                            <div class="clear" ng-class="{ 'text-right': vm.isSelf(m.sender), 'text-left': !vm.isSelf(m.sender) }">
+                                                <div ng-class="{ 'p-a p-y-sm info inline text-left r': vm.isSelf(m.sender), 'p-a p-y-sm dark-white inline r': !vm.isSelf(m.sender) }">
+                                                    {{ m.content }}
+                                                </div>
+                                                <div class="text-muted text-xs m-t-xs">{{ m.created_time | date:'medium'}}</div>
+                                            </div>
+                                        </div>
+                                        <!--/ text message-->
+
+                                        <!--image message-->
+                                        <div ng-if="m.type == 'image'">
+                                            <a href ng-class="{ 'pull-right w-40 m-l-sm': vm.isSelf(m.sender), 'pull-left w-40 m-r-sm': !vm.isSelf(m.sender) }">
+                                                <img src="../assets/images/a3.jpg" class="w-full img-circle" alt="...">
+                                            </a>
+                                            <div class="clear" ng-class="{ 'text-right': vm.isSelf(m.sender), 'text-left': !vm.isSelf(m.sender) }">
+                                                <div ng-class="{ 'p-a p-y-sm info inline text-left r': vm.isSelf(m.sender), 'p-a p-y-sm dark-white inline r': !vm.isSelf(m.sender) }">
+                                                    <div class="m-t-xs">
+                                                        <div class="box img-responsive">
+                                                            <img ng-src="/img/{{ m.image_name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-t-xs">
+                                                        <div ng-class="{ 'p-a p-y-sm info inline text-left r': vm.isSelf(m.sender), 'p-a p-y-sm dark-white inline r': !vm.isSelf(m.sender) }">
+                                                            {{ m.content }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-muted text-xs m-t-xs">{{ m.created_time | date:'medium'}}</div>
+                                            </div>
+                                        </div>
+                                        <!--/ image message-->
+
+                                        <!--media message-->
+                                        <div ng-if="m.type == 'media'">
+                                            <a href ng-class="{ 'pull-right w-40 m-l-sm': vm.isSelf(m.sender), 'pull-left w-40 m-r-sm': !vm.isSelf(m.sender) }">
+                                                <img src="../assets/images/a3.jpg" class="w-full img-circle" alt="...">
+                                            </a>
+                                            <div class="clear" ng-class="{ 'text-right': vm.isSelf(m.sender), 'text-left': !vm.isSelf(m.sender) }">
+                                                <div class="m-t-xs">
+                                                    <div class="box col-md-6 col-md-offset-6">
+                                                        <div class="item dark">
+                                                            <div style="position:relative; overflow:hidden; padding-bottom:100%;">
+                                                                <a href ui-sref="public.media({ mediaId: m.media._id })">
+                                                                    <img ng-src="{{ m.media.preview_url }}" class="w-full img-responsive" style="position:absolute;">
+                                                                </a>
+                                                            </div>
+                                                            <div class="bottom gd-overlay p-a-xs">
+                                                                <a href class="text-md block p-x-sm">{{ m.media.shop.username }}</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="p-a">
+                                                            <div class="text-muted m-b-xs">
+                                                                <span class="m-r">{{ m.media.created_time | date: 'medium' }}</span>
+                                                            </div>
+                                                            <p class="h-3x" ng-bind-html="m.media.caption | caption"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-t-xs">
+                                                    <div ng-class="{ 'p-a p-y-sm info inline text-left r': vm.isSelf(m.sender), 'p-a p-y-sm dark-white inline r': !vm.isSelf(m.sender) }">
+                                                        {{ m.content }}
+                                                    </div>
+                                                </div>
+                                                <div class="text-muted text-xs m-t-xs">{{ m.created_time | date: 'medium' }}</div>
+                                            </div>
+                                        </div>
+                                        <!--/ media message-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-footer b-t">
+                        <a class="pull-left w-32 m-r"><img src="../assets/images/a3.jpg" class="w-full img-circle" alt="..."></a>
+                        <form>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control no-border" placeholder="Say something..." ng-model="vm.message.content">
+                                <span class="input-group-btn">
+                                    <a href class="btn white no-shadow no-border" data-toggle="collapse" data-target="#dropzone">
+                                        <i class="fa fa-camera text-muted"></i>
+                                    </a>
+                                    <button class="btn white no-shadow no-border" type="button" ng-click="vm.sendMessage()">
+                                        <i class=" material-icons md-18">&#xe163;</i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                        <div id="dropzone" class="collapse padding m-b-md">
+                            <file-uploader delegate="vm"></file-uploader>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /column -->
+        </div>
+    </div>
+</div>

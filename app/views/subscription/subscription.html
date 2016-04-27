@@ -1,0 +1,17 @@
+<div ng-controller="SubscriptionCtrl as vm">
+    <nav-bar delegate="vm"></nav-bar>
+    <!--<div ui-include="views/components/media-card.html"></div>-->
+    <div class="padding col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+        <div class="row">
+            <h2>My Subscriptions</h2>
+            <shop-card shop="s" class="col-md-3" ng-repeat="s in vm.subscriptions"></shop-card>
+        </div>
+        <div class="row inline padding margin" ng-hide="vm.noMoreSubscriptions">
+            <div class="pull-center">
+                <button class="md-btn md-raised m-b-sm w-xs blue"  ng-click="vm.load_more_subsciptions()">
+                    <i class="material-icons md-24">&#xe5d3;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

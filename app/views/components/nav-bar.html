@@ -1,0 +1,103 @@
+<div class="app-header navbar-md white box-shadow">
+    <div class="navbar ng-scope">
+        <a data-toggle="collapse" data-target="#navbar-4" class="navbar-item pull-right hidden-md-up m-a-0 m-l">
+            <i class="material-icons">&#xe5d2;</i>
+        </a>
+
+        <!-- navbar brand -->
+        <a class="navbar-brand" ui-sref="public.home">
+            <!--<div ui-include="'../assets/images/logo.svg'"></div>-->
+            <!--<img src="../assets/images/logo.png" alt="." class="hide">-->
+            <span class="hidden-folded inline">GraffitiEvolution!</span>
+        </a>
+        <!-- / navbar brand-->
+
+        <!-- nabar right -->
+        <div class=" nav navbar-nav pull-right" data-pjax>
+            <form class="navbar-form form-inline navbar-item m-l v-m" role="btn" ng-if="!loggedin()">
+                <button type="button" class="btn btn-primary" ng-click="login('user');">
+                    <i class="fa fa-sign-in"></i><span> Sell </span>
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="login('shop');">
+                    <i class="fa fa-sign-in"></i><span> Buy </span>
+                </button>
+            </form>
+            <ul class="nav navbar-nav" ng-if="loggedin()">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" ng-click="goProfile();">
+                    <span class="avatar w-32">
+                        <img src="../assets/images/a3.jpg" alt="...">
+                        <!--<i class="on b-white bottom"></i>-->
+                    </span>
+                    <span class="hidden-md-down nav-text m-l-sm text-left">
+                        <span class="_500">{{ clientUsername }}</span>
+                        <small class="text-muted">{{ clientType }}</small>
+                    </span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link p-l b-l" href data-toggle="dropdown">
+                        <i class="material-icons">&#xe5d4;</i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right dropdown-menu-scale">
+                        <a class="dropdown-item" ui-sref="private.bookmark">
+                            <span>Bookmarks</span>
+                        </a>
+                        <a class="dropdown-item" ui-sref="private.subscription">
+                            <span>Subscriptions</span>
+                        </a>
+                        <a class="dropdown-item" ui-sref="private.chat">
+                            <span>Chats</span>
+                            <span class="label warn m-l-xs" ng-show="chats.length > 0">{{ chats.length }}</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" ng-click="logout()">Sign out</a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+        <!-- / navbar right -->
+
+        <!-- navbar collapse -->
+        <div class="collapse navbar-toggleable-sm" id="navbar-4" data-pjax>
+            <!-- link and dropdown -->
+            <ul class="nav navbar-nav  pull-left m-r nav-active-border b-primary">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href data-toggle="dropdown">
+                        <span class="nav-text">Home</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div ng-repeat="(key, value) in dict.categories">
+                            <a href="" class="dropdown-item" ui-sref="app.category({ category: key })"><span class="nav-text">{{value}}</span></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href>
+                        <span class="nav-text">Art</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- / link and dropdown -->
+        </div>
+        <!-- / navbar collapse -->
+
+        <!-- search form -->
+        <form class="navbar-form form-inline navbar-item m-l v-m" role="search" data-pjax>
+            <div class="form-group l-h m-a-0">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" ng-model="searchText" data-animation="am-flip-x"
+                           bs-options="k.keyword as k.keyword for k in suggestKeyword($viewValue)"
+                           placeholder="Search products and shops" bs-typeahead="" autocomplete="off">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn white b-a no-b-l no-shadow" ng-click="goSearch()"><i class="fa fa-search"></i></button>
+                </span>
+                </div>
+            </div>
+        </form>
+        <!-- / search form -->
+    </div>
+</div>

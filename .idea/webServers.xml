@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e2381d6f-21a7-4169-9e5b-a7460bb98040" name="ny-droplet-graffiti" url="http://162.243.226.35">
+        <fileTransfer host="162.243.226.35" port="22" rootFolder="/root/_public/484/graffiti" accessType="SFTP" password="dfc8dfc6dfcbdfc4dfcedfc5dfd8dfc3" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

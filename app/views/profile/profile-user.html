@@ -1,0 +1,52 @@
+<div ng-controller="ProfileUserCtrl as vm">
+    <nav-bar delegate="vm"></nav-bar>
+    <div class="container" style="padding-top: 72px">
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="box">
+                    <div class="p-a-md text-center">
+                        <p><img ng-src="/img/{{vm.user.picture_name}}" class="img-circle w-xs"></p>
+                        <a ng-href="https://instagram.com/{{vm.user.username}}" target="_blank" class="text-md block">
+                            @{{vm.user.username}}
+                        </a>
+                        <p><small>{{vm.user.full_name}}</small></p>
+                        <div class="text-center m-t">
+                            <a ng-href="https://instagram.com/{{vm.user.username}}" target="_blank"
+                               class="btn btn-icon btn-social rounded btn-social-colored light-blue-800" title="Instagram">
+                                <i class="fa fa-instagram"></i>
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-8">
+                <div class="col-md-12 text-center">
+                    <div class="nav-active-border b-primary top box">
+                        <div class="nav nav-md">
+                            <a class="nav-link" ng-class="{active: vm.isCurrentTab(0)}" href ng-click="vm.switchTab(0)">收藏商品</a>
+                            <a class="nav-link" ng-class="{active: vm.isCurrentTab(1)}" href ng-click="vm.switchTab(1)">訂閱店鋪</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="vm.isCurrentTab(0)">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <media-card media="m" class="col-md-4" ng-repeat="m in vm.bookmarkedMedia"></media-card>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="vm.isCurrentTab(1)">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <shop-card shop="s" class="col-md-4" ng-repeat="s in vm.subscribedShops"></shop-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

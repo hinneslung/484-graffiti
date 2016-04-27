@@ -1,0 +1,275 @@
+<div ng-controller="ProfileShopCtrl as vm">
+    <nav-bar delegate="vm"></nav-bar>
+    <div class="container" style="padding-top: 72px">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="box">
+                    <div class="item" >
+                        <div class="item-bg">
+                            <img ng-src="/img/{{ vm.shop.picture_name }}" class="blur">
+                        </div>
+                        <div class="p-a-lg pos-rlt text-center">
+                            <img ng-src="/img/{{ vm.shop.picture_name }}" class="img-circle w-56" style="margin-bottom: -7rem">
+                        </div>
+                    </div>
+                    <div class="p-a text-center">
+                        <p class="text-md m-t block">{{ vm.shop.username }}</p>
+                        <p><small>{{ vm.shop.full_name || 'Just Come!'}}</small></p>
+                        <p ng-show="vm.loggedin()">
+                            <a href class="btn btn-sm success" ng-click="vm.toggleShopSubscription()" ng-show="vm.isShopSubscribed">
+                                Subscribed <i class="fa fa-check"></i>
+                            </a>
+                            <a href class="btn btn-sm primary" ng-click="vm.toggleShopSubscription()" ng-show="!vm.isShopSubscribed">
+                                Subscribe
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 text-center">
+                <div class="nav-active-border b-primary top box">
+                    <div class="nav nav-md">
+                        <a class="nav-link" ng-class="{active: vm.isCurrentTab(0)}" href ng-click="vm.switchTab(0)">商品</a>
+                        <a class="nav-link" ng-class="{active: vm.isCurrentTab(1)}" href ng-click="vm.switchTab(1)">店鋪設定</a>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="vm.isCurrentTab(0)" class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-md-12 input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search shop" autocomplete="off" ng-model="vm.searchText" ng-change="vm.searchFieldChanged()">
+                    </div>
+                </div>
+                <br>
+                <div class="row" infinite-scroll="vm.getMedia()" infinite-scroll-distance="1">
+                    <media-card media="m" ng-repeat="m in vm.media" class="col-md-3"></media-card>
+                </div>
+            </div>
+
+            <div ng-show="vm.isCurrentTab(1)" class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="box">
+                            <div class="box-header">
+                                <h2>聯絡</h2>
+                            </div>
+                            <div class="box-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">WhatsApp:</label>
+                                        <div class="col-sm-9">
+                                            <p class="form-control-static">
+                                                <a editable-text="vm.shop.whatsapp" class="editable editable-click" onaftersave="vm.updateContacts()">
+                                                    {{ vm.shop.whatsapp || "empty" }}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">Line:</label>
+                                        <div class="col-sm-9">
+                                            <p class="form-control-static">
+                                                <a editable-text="vm.shop.line" class="editable editable-click" onaftersave="vm.updateContacts()">
+                                                    {{ vm.shop.line || "empty" }}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">WeChat:</label>
+                                        <div class="col-sm-9">
+                                            <p class="form-control-static">
+                                                <a editable-text="vm.shop.wechat" class="editable editable-click" onaftersave="vm.updateContacts()">
+                                                    {{ vm.shop.wechat || "empty" }}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 form-control-label">Phone:</label>
+                                        <div class="col-sm-9">
+                                            <p class="form-control-static">
+                                                <a editable-text="vm.shop.phone" class="editable editable-click" onaftersave="vm.updateContacts()">
+                                                    {{ vm.shop.phone || "empty" }}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Delivery Methods-->
+                        <div class="box">
+                            <ul class="list inset m-a-0">
+                                <li class="list-item" ng-repeat="dm in vm.shop.delivery_methods">
+                                    <span class="pull-right text-warning">
+                                        <a href ng-click="vm.removeDeliveryMethod(dm)"><i class="fa fa-remove text-xs"></i></a>
+                                    </span>
+                                    <a herf class="list-left">
+                                        <span class="w-40 circle accent">
+                                            <i class="fa fa-envelope" ng-if="dm.type==='postal'"></i>
+                                            <i class="fa fa-user" ng-if="dm.type==='f2f'"></i>
+                                        </span>
+                                    </a>
+                                    <div class="list-body">
+                                        <div><a href="">{{ vm.deliveryMethodFromCode(dm.type) }}</a></div>
+                                        <small class="text-muted text-ellipsis">{{ dm.fee | currency }}</small>
+                                        <small class="text-muted text-ellipsis">{{ dm.area }}</small>
+                                        <small class="text-muted text-ellipsis">{{ dm.description }}</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Delivery Methods Ends-->
+                        <!--New Delivery Form-->
+                        <div class="box">
+                            <div class="box-header">
+                                <h2>新增運送方法</h2>
+                                <small>blah blah blah very useful small text!</small>
+                            </div>
+                            <div class="box-divider m-a-0"></div>
+                            <div class="box-body">
+                                <form role="form" name="deliveryForm" ng-submit="deliveryForm.$valid && vm.createDeliveryMethod();" novalidate>
+                                    <div class="md-form-group">
+                                        <div id="deliveryMethodType" ng-init="vm.newDelivery.type='f2f'">
+                                            <p><label class="md-check">
+                                                <input type="radio" name="deliveryMethodType" ng-model="vm.newDelivery.type" value="f2f" requried>
+                                                <i class="primary"></i>
+                                                一手交錢一手交貨
+                                            </label></p>
+                                            <p><label class="md-check">
+                                                <input type="radio" name="deliveryMethodType" ng-model="vm.newDelivery.type" value="postal" requried>
+                                                <i class="primary"></i>
+                                                郵寄
+                                            </label></p>
+                                        </div>
+                                    </div>
+                                    <div class="md-form-group">
+                                        <input type="number" class="md-input" ng-model="vm.newDelivery.fee"
+                                               ui-validate="'$value >=0'" autocomplete="off" style="">
+                                        <label>額外費用</label>
+                                    </div>
+                                    <div class="md-form-group">
+                                        <input class="md-input" ng-model="vm.newDelivery.area" autocomplete="off" style="">
+                                        <label>區域</label>
+                                    </div>
+                                    <div class="md-form-group">
+                                        <textarea class="md-input" ng-model="vm.newDelivery.description" rows="2" style=""></textarea>
+                                        <label>備註</label>
+                                    </div>
+                                    <div class="form-group row m-t-md">
+                                        <div class="text-center">
+                                            <button type="submit" class="btn primary">新增</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--New Delivery Form End-->
+                    </div>
+                    <div class="col-md-6">
+                        <!--Payment Methods-->
+                        <div class="box">
+                            <ul class="list inset m-a-0">
+                                <li class="list-item" ng-repeat="pm in vm.shop.payment_methods">
+                                    <span class="pull-right text-warning">
+                                        <a href ng-click="vm.removePaymentMethod(pm)"><i class="fa fa-remove text-xs"></i></a>
+                                    </span>
+                                    <a herf class="list-left">
+                                        <span class="w-40 circle accent">
+                                            <i class="fa fa-bank" ng-if="pm.type==='bankin'"></i>
+                                            <i class="fa fa-user" ng-if="pm.type==='f2f'"></i>
+                                        </span>
+                                    </a>
+                                    <div class="list-body">
+                                        <div><a href="">{{ vm.paymentMethodFromCode(pm.type) }}</a></div>
+                                        <small class="text-muted text-ellipsis" ng-show="pm.bank">{{ pm.bank }}</small>
+                                        <small class="text-muted text-ellipsis" ng-show="pm.bank_acc_no">{{ pm.bank_acc_no }}</small>
+                                        <small class="text-muted text-ellipsis" ng-show="pm.bank_acc_name">{{ pm.bank_acc_name }}</small>
+                                        <small class="text-muted text-ellipsis" ng-show="pm.fee">{{ pm.fee | currency }}</small>
+                                        <small class="text-muted text-ellipsis">{{ pm.description }}</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Payment Methods Ends-->
+                        <!--New Payment Form-->
+                        <div class="box">
+                            <div class="box-header">
+                                <h2>新增收款方法</h2>
+                                <small>blah blah blah very useful small text!</small>
+                            </div>
+                            <div class="box-divider m-a-0"></div>
+                            <div class="box-body">
+                                <form role="form" name="paymentForm" ng-submit="paymentForm.$valid && vm.createPaymentMethod();" novalidate>
+                                    <div class="md-form-group">
+                                        <div id="paymentMethodType" ng-init="vm.newPayment.type='f2f'">
+                                            <p><label class="md-check">
+                                                <input type="radio" name="paymentMethodType" ng-model="vm.newPayment.type" value="f2f" requried>
+                                                <i class="primary"></i>
+                                                一手交錢一手交貨
+                                            </label></p>
+                                            <p><label class="md-check">
+                                                <input type="radio" name="paymentMethodType" ng-model="vm.newPayment.type" value="bankin" requried>
+                                                <i class="primary"></i>
+                                                銀行轉賬
+                                            </label></p>
+                                        </div>
+                                    </div>
+                                    <!--bank-->
+                                    <div ng-show="vm.newPaymentIsBankin()">
+                                        <div class="md-form-group">
+                                            <input class="md-input" ng-model="vm.newPayment.bank"
+                                                   ng-required='vm.newPaymentIsBankin()' autocomplete="off" style="">
+                                            <label>銀行</label>
+                                        </div>
+                                        <div class="md-form-group">
+                                            <input class="md-input" ng-model="vm.newPayment.bankAccNo"
+                                                   ng-required='vm.newPaymentIsBankin()' autocomplete="off" style="">
+                                            <label>銀行賬戶號碼</label>
+                                        </div>
+                                        <div class="md-form-group">
+                                            <input class="md-input" ng-model="vm.newPayment.bankAccName"
+                                                   ng-required='vm.newPaymentIsBankin()' autocomplete="off" style="">
+                                            <label>銀行賬戶擁有人姓名</label>
+                                        </div>
+                                    </div>
+                                    <!--bank end-->
+                                    <div class="md-form-group">
+                                        <input type="number" class="md-input" ng-model="vm.newPayment.fee"
+                                               ui-validate="'$value >=0'" autocomplete="off" style="">
+                                        <label>額外費用</label>
+                                    </div>
+                                    <div class="md-form-group">
+                                        <textarea class="md-input" ng-model="vm.newPayment.description" rows="2" style=""></textarea>
+                                        <label>備註</label>
+                                    </div>
+                                    <div class="form-group row m-t-md">
+                                        <div class="text-center">
+                                            <button type="submit" class="btn primary">新增</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--New Payment Form End-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .ng-dirty.ng-invalid {
+        border-color: #f44455;
+    }
+    .ng-submitted .ng-invalid {
+        border-color: #f44455;
+    }
+</style>

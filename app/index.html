@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>GraffitiEvolution</title>
+    <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+    <link rel="apple-touch-icon" href="../assets/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Flatkit">
+    <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+
+    <!-- style -->
+    <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+    <link rel="stylesheet" href="../assets/angular-motion/dist/angular-motion.min.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/bootstrap-additions/dist/bootstrap-additions.min.css" type="text/css" />
+
+    <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+    <!-- build:css ../assets/styles/app.min.css -->
+    <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+    <!-- endbuild -->
+    <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+    <!--xeditable-->
+    <link rel="stylesheet" href="../libs/angular/angular-xeditable/dist/css/xeditable.css" type="text/css" />
+</head>
+<body ng-app="app" ng-controller="AppCtrl" class="{{app.setting.bg}}" ng-class="{'container': app.setting.boxed, 'ie': isIE,'smart': isSmart}">
+    <div class="app" ui-view></div>
+    <!-- build:js scripts/app.angular.js -->
+    <!-- jQuery -->
+    <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+    <!-- Bootstrap -->
+    <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+    <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../libs/jquery/PACE/pace.min.js"></script>
+    <!-- Angular -->
+    <script src="../libs/angular/angular/angular.js"></script>
+    <script src="../libs/angular/angular-animate/angular-animate.js"></script>
+    <script src="../libs/angular/angular-resource/angular-resource.js"></script>
+    <script src="../libs/angular/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../libs/angular/angular-touch/angular-touch.js"></script>
+    <script src="../libs/angular/angular-file-upload/angular-file-upload.js"></script>
+    <script src="../libs/angular/angular-xeditable/dist/js/xeditable.min.js"></script>
+    <script src="../libs/angular/angular-infinite-scroll/ng-infinite-scroll.js"></script>
+    <script src="../libs/angular/angular-scroll-glue/angular-scroll-glue.js"></script>
+    <script src="../libs/angular/angular-elastic/angular-elastic.min.js"></script>
+    <script src="../libs/angular/angular-bootstrap/ui-bootstrap.js"></script>
+    <!-- router -->
+    <script src="../libs/angular/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- storage -->
+    <script src="../libs/angular/ngstorage/ngStorage.js"></script>
+    <!-- utils -->
+    <script src="../libs/angular/angular-ui-utils/ui-utils.js"></script>
+
+    <!-- Angular strap -->
+    <script src="../libs/angular/angular-strap/dist/angular-strap.js"></script>
+    <script src="../libs/angular/angular-strap/dist/angular-strap.tpl.js"></script>
+
+    <!-- Angular JWT -->
+    <script src="../libs/angular/angular-jwt/angular-jwt.js"></script>
+
+    <!-- Other libs -->
+    <script src="../libs/js/socket-io/socket.io.js"></script>
+
+    <!-- lazyload -->
+    <script src="../libs/angular/oclazyload/dist/ocLazyLoad.js"></script>
+
+    <!-- App -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/config.lazyload.js"></script>
+    <script src="scripts/config.router.js"></script>
+    <script src="scripts/app.ctrl.js"></script>
+
+    <script src="scripts/services/api.js"></script>
+    <script src="scripts/services/dictionary.js"></script>
+    <script src="scripts/services/socket.js"></script>
+
+    <script src="scripts/directives/nav-bar.js"></script>
+    <script src="scripts/directives/media-card.js"></script>
+    <script src="scripts/directives/shop-card.js"></script>
+    <script src="scripts/directives/file-uploader.js"></script>
+
+    <script src="scripts/directives/ui-jp.js"></script>
+    <script src="scripts/directives/ui-nav.js"></script>
+    <script src="scripts/directives/ui-fullscreen.js"></script>
+    <script src="scripts/directives/ui-scroll-to.js"></script>
+    <script src="scripts/directives/ui-toggle-class.js"></script>
+    <script src="scripts/directives/ui-include.js"></script>
+
+    <script src="scripts/filters/caption.js"></script>
+    <script src="scripts/filters/fromnow.js"></script>
+
+    <script src="scripts/services/ngstore.js"></script>
+    <script src="scripts/services/ui-load.js"></script>
+    <script src="scripts/services/palette.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

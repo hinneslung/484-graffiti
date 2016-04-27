@@ -1,0 +1,109 @@
+<div ng-controller="MediaCtrl as vm" xmlns="http://www.w3.org/1999/html">
+    <nav-bar delegate="vm"></nav-bar>
+    <div class="container-fluid" style="padding-top:72px; max-height: 1024px">
+        <div class="row" style="padding: 12px">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+                <!--media card -->
+                <div class="col-sm-12 col-md-7">
+                    <div class="box">
+                        <div class="item dark">
+                            <img ng-src="{{ vm.media.image_url }}" class="w-full">
+                        </div>
+                        <div class="pull-right" ng-show="vm.showMediaActions()">
+                            <a class="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset"
+                               ng-click="vm.toggleBookmark()" ng-class="{ 'red': vm.isBookmarked, 'white': !vm.isBookmarked }">
+                                <i class="material-icons md-24" ng-show="vm.isBookmarked">&#xe866;</i>
+                                <i class="material-icons md-24" ng-show="!vm.isBookmarked">&#xe867;</i>
+                            </a>
+                            <a class="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset primary"
+                               ui-sref="private.chat({ buddyUsername: vm.media.shop.username, mediaId: vm.media._id })">
+                                <i class="material-icons md-24">&#xe854;</i>
+                            </a>
+                        </div>
+                        <div class="p-a">
+                            <div class="text-muted m-b-xs">
+                                <span class="m-r">{{ vm.media.created_time | date: 'medium' }}</span>
+                            </div>
+                            <p ng-bind-html="vm.media.caption | caption"></p>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/ media card-->
+
+                <div class="col-sm-12 col-md-5">
+
+                    <div class="row">
+                        <div class="box">
+                            <div class="box-header primary">
+                                <h3>Box Header</h3>
+                                <small>Sub title goes here with small font</small>
+                                <div class="box-tool">
+                                    <ul class="nav">
+                                        <li class="nav-item inline"><a class="nav-link"><i class="material-icons md-18"></i></a></li>
+                                        <li class="nav-item inline dropdown">
+                                            <a class="nav-link" data-toggle="dropdown"><i class="material-icons md-18"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-scale pull-right">
+                                                <a class="dropdown-item" href="">Action</a> <a class="dropdown-item" href="">Another action</a> <a class="dropdown-item" href="">Something else here</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item">Separated link</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <p class="m-a-0">Description</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--shop card-->
+                    <div class="row">
+                        <shop-card shop="vm.media.shop" class="col-md-12"></shop-card>
+                    </div>
+
+                    <div class="row" style="padding: 0 12px 0 12px">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>Reviews <span class="label success">{{ vm.reviews.size }}</span></h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="streamline m-b m-l">
+                                    <!-- reviews -->
+                                    <div class="sl-item" ng-show="vm.reviews.length == 0">
+                                        <div class="sl-content">
+                                            <p>Seems everyone is too amazed by the product and have no time to review this product.</p>
+                                        </div>
+                                    </div>
+                                    <div class="sl-item" ng-repeat="r in vm.reviews">
+                                        <div class="sl-left">
+                                            <!--TODO: user profile picture-->
+                                            <img ng-src="{{ r.user.profile_picture_url }}" class="img-circle">
+                                        </div>
+                                        <div class="sl-content">
+                                            <div class="sl-date text-muted">{{ r.created_time | date: 'medium'}}</div>
+                                            <div class="sl-author">
+                                                <a href class="text-info">@{{ r.user.username}}</a>
+                                            </div>
+                                            <div>
+                                                <p>{{ r.content }}</p>
+                                                <p ng-repeat="img in r.image_urls">
+				                      <span class="inline p-a-xs b dark-white">
+				                        <img ng-src="{{ img }}" class="img-responsive">
+				                      </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/ reviews-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
