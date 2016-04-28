@@ -39,46 +39,7 @@
     </div>
 </div>
 <!-- /Chats List -->
-<!-- column -->
-<div class="col-sm-2 col-md-2 w w-auto-sm b-r">
-    <div class="row-col">
-        <div class="row-row">
-            <div class="row-body scrollable hover">
-                <div class="row-inner">
-                    <div class="nav nav-pills nav-stacked m-t-sm">
-                        <a class="nav-link _600" ng-class="{'_600': (filter == '')}" ng-click="selectGroup({name:''})">ALL Contacts</a>
-                        <!-- ngRepeat: item in groups --><a ng-repeat="item in groups" ng-dblclick="editItem(item)" class="nav-link hover-anchor ng-scope" ng-class="{'_600': item.selected}" ng-click="selectGroup(item)">
-                        <span ng-click="deleteGroup(item)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
-                        <span class="block ng-binding">Coworkers</span>
-                        <input type="text" class="form-control form-control-sm pos-abt ng-pristine ng-untouched ng-valid ng-hide" ng-show="item.editing" ng-blur="doneEditing(item)" ng-model="item.name" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
-                    </a><!-- end ngRepeat: item in groups --><a ng-repeat="item in groups" ng-dblclick="editItem(item)" class="nav-link hover-anchor ng-scope" ng-class="{'_600': item.selected}" ng-click="selectGroup(item)">
-                        <span ng-click="deleteGroup(item)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
-                        <span class="block ng-binding">Family</span>
-                        <input type="text" class="form-control form-control-sm pos-abt ng-pristine ng-untouched ng-valid ng-hide" ng-show="item.editing" ng-blur="doneEditing(item)" ng-model="item.name" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
-                    </a><!-- end ngRepeat: item in groups --><a ng-repeat="item in groups" ng-dblclick="editItem(item)" class="nav-link hover-anchor ng-scope" ng-class="{'_600': item.selected}" ng-click="selectGroup(item)">
-                        <span ng-click="deleteGroup(item)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
-                        <span class="block ng-binding">Friends</span>
-                        <input type="text" class="form-control form-control-sm pos-abt ng-pristine ng-untouched ng-valid ng-hide" ng-show="item.editing" ng-blur="doneEditing(item)" ng-model="item.name" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
-                    </a><!-- end ngRepeat: item in groups --><a ng-repeat="item in groups" ng-dblclick="editItem(item)" class="nav-link hover-anchor ng-scope" ng-class="{'_600': item.selected}" ng-click="selectGroup(item)">
-                        <span ng-click="deleteGroup(item)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
-                        <span class="block ng-binding">Partners</span>
-                        <input type="text" class="form-control form-control-sm pos-abt ng-pristine ng-untouched ng-valid ng-hide" ng-show="item.editing" ng-blur="doneEditing(item)" ng-model="item.name" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
-                    </a><!-- end ngRepeat: item in groups --><a ng-repeat="item in groups" ng-dblclick="editItem(item)" class="nav-link hover-anchor ng-scope" ng-class="{'_600': item.selected}" ng-click="selectGroup(item)">
-                        <span ng-click="deleteGroup(item)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
-                        <span class="block ng-binding">Group</span>
-                        <input type="text" class="form-control form-control-sm pos-abt ng-pristine ng-untouched ng-valid ng-hide" ng-show="item.editing" ng-blur="doneEditing(item)" ng-model="item.name" style="top:3px;left:2px;width:98%" ui-focus="item.editing">
-                    </a><!-- end ngRepeat: item in groups -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="p-a">
-            <span bs-tooltip="" title="Double click to Edit" class="pull-right text-muted inline p-a-xs m-r-sm ng-scope"><i class="fa fa-question"></i></span>
-            <a href="" class="btn btn-sm white" ng-click="createGroup()"><i class="fa fa-plus fa-fw m-r-xs"></i> <span class="hidden-sm-down">New Group</span></a>
-        </div>
-    </div>
-</div>
-<!-- /column -->
+
 <!-- Chat room -->
 <div class="col-md-6">
     <div class="box row-col" style="min-height:450px" ng-if="!vm.buddy">

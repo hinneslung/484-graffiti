@@ -10,12 +10,17 @@
     /* @ngInject */
     function MediaCtrl($window, $scope, $rootScope, $stateParams, $log, dictionary, apiService) {
         var vm = this;
-        vm.dict = dictionary();
         vm.title = 'MediaCtrl';
+
+	    $scope.dict = dictionary();
 
         $scope.media = {
             id: 0,
-            image_url: "images/0.jpg"
+            image_url: "images/0.jpg",
+            shop: {
+                username: "Artist " + 1,
+                image_url: "../assets/images/a1.jpg"
+            }
         };
 
         $scope.arts = [];
@@ -26,5 +31,6 @@
                 preview_url: "images/" + i + ".jpg"
             });
         }
+
     }
 })();

@@ -10,8 +10,9 @@
 	    /* @ngInject */
 	    function HomeCtrl($scope, $log, $window, $rootScope, dictionary, apiService, CONST) {
 		    var vm = this;
-		    vm.dict = dictionary();
 		    vm.title = 'home';
+
+		    $scope.dict = dictionary();
 
 		    $scope.myInterval = 5000;
 		    $scope.noWrapSlides = false;
@@ -22,12 +23,17 @@
 		    $scope.addSlide = function() {
 			    var newWidth = 600 + slides.length + 1;
 			    slides.push({
-				    image: 'images/0.jpg',
+				    image: 'images/banners/0.png',
 				    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
 				    id: currIndex++
 			    });
 			    slides.push({
-				    image: 'images/1.jpg',
+				    image: 'images/banners/1.png',
+				    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+				    id: currIndex++
+			    });
+			    slides.push({
+				    image: 'images/banners/2.png',
 				    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
 				    id: currIndex++
 			    });
@@ -41,7 +47,7 @@
 			    $scope.arts.push({
 				    id: i,
 				    shop: {username: "Artist " + i},
-				    preview_url: "images/" + i + ".jpg"
+				    preview_url: "images/" + i % 6 + ".jpg"
 			    });
 		    }
 
@@ -50,7 +56,7 @@
 			    $scope.artists.push({
 				    id: i,
 				    username: "Artist " + i,
-				    image_url: "images/" + i + ".jpg"
+				    image_url: "../assets/images/a" + i + ".jpg"
 			    });
 		    }
     }

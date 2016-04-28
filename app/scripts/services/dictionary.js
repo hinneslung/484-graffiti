@@ -39,14 +39,13 @@
 	            subscribedMedia: '訂閱商品',
                 seeMore: 'More!',
                 categories: {
-                    womenClothes :"女裝服飾",
-                    menClothes:"男裝服飾",
-                    womenShoes:"女裝鞋款",
-                    menShoes:"男裝鞋款",
-                    bags:"手袋皮具",
-                    facialCare:"美容護理",
-                    gadgets:"數碼配件",
-                    accessories:"精品手作"
+                    cat1: "Tag",
+                    cat2: "Throw-Up",
+                    cat3: "Stencil",
+                    cat4: "Stickers (Slaps)",
+                    cat5: "Piece",
+                    cat6: "Wildstyle",
+                    cat7: "Blockbuster"
                 },
                 getURLParameter: function (name) {
                     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [,""])[1].replace(/\+/g, '%20')) || null;

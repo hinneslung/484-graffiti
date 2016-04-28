@@ -26,10 +26,11 @@
         <div class="row">
             <!--categories-->
             <div class="col-md-3">
+                <h6 class="m-b">Categories</h6>
                 <div class="nav-active-border b-info left box">
                     <ul class="nav nav-sm">
-                        <li class="nav-item" ng-repeat="cat in categories">
-                            <a class="nav-link active" href="">{{ cat.title }}</a>
+                        <li class="nav-item" ng-repeat="(key, value) in dict.categories">
+                            <a class="nav-link" href="">{{ value }}</a>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +39,7 @@
             <!--Arts-->
             <div class="col-md-9">
                 <div class="row">
-                    <media-card media="art" class="col-md-3" ng-repeat="art in arts"></media-card>
+                    <media-card media="art" class="col-md-4" ng-repeat="art in arts"></media-card>
                 </div>
             </div>
         </div>

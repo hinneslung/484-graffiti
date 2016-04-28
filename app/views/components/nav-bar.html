@@ -5,7 +5,7 @@
         </a>
 
         <!-- navbar brand -->
-        <a class="navbar-brand" ui-sref="public.home">
+        <a class="navbar-brand" ui-sref="public.home" href="http://graffitieveolution.xyz">
             <!--<div ui-include="'../assets/images/logo.svg'"></div>-->
             <!--<img src="../assets/images/logo.png" alt="." class="hide">-->
             <span class="hidden-folded inline">GraffitiEvolution!</span>
@@ -15,10 +15,10 @@
         <!-- nabar right -->
         <div class=" nav navbar-nav pull-right" data-pjax>
             <form class="navbar-form form-inline navbar-item m-l v-m" role="btn" ng-if="!loggedin()">
-                <button type="button" class="btn btn-primary" ng-click="login('user');">
+                <button type="button" class="btn btn-primary" >
                     <i class="fa fa-sign-in"></i><span> Sell </span>
                 </button>
-                <button type="button" class="btn btn-primary" ng-click="login('shop');">
+                <button type="button" class="btn btn-primary" >
                     <i class="fa fa-sign-in"></i><span> Buy </span>
                 </button>
             </form>
@@ -65,20 +65,20 @@
         <div class="collapse navbar-toggleable-sm" id="navbar-4" data-pjax>
             <!-- link and dropdown -->
             <ul class="nav navbar-nav  pull-left m-r nav-active-border b-primary">
+                <li class="nav-item">
+                    <a class="nav-link" href="#/home">
+                        <span class="nav-text">Home</span>
+                    </a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href data-toggle="dropdown">
-                        <span class="nav-text">Home</span>
+                        <span class="nav-text">Arts</span>
                     </a>
                     <div class="dropdown-menu">
                         <div ng-repeat="(key, value) in dict.categories">
                             <a href="" class="dropdown-item" ui-sref="app.category({ category: key })"><span class="nav-text">{{value}}</span></a>
                         </div>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href>
-                        <span class="nav-text">Art</span>
-                    </a>
                 </li>
             </ul>
             <!-- / link and dropdown -->
@@ -89,7 +89,7 @@
         <form class="navbar-form form-inline navbar-item m-l v-m" role="search" data-pjax>
             <div class="form-group l-h m-a-0">
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" ng-model="searchText" data-animation="am-flip-x"
+                    <input type="text" class="form-control" data-animation="am-flip-x"
                            bs-options="k.keyword as k.keyword for k in suggestKeyword($viewValue)"
                            placeholder="Search products and shops" bs-typeahead="" autocomplete="off">
                 <span class="input-group-btn">

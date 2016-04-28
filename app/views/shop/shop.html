@@ -6,39 +6,48 @@
                 <div class="box">
                     <div class="item" >
                         <div class="item-bg">
-                            <img ng-src="/img/{{ vm.shop.picture_name }}" class="blur">
+                            <img src="images/0.jpg">
                         </div>
                         <div class="p-a-lg pos-rlt text-center">
-                            <img ng-src="/img/{{ vm.shop.picture_name }}" class="img-circle w-56" style="margin-bottom: -7rem">
+                            <img src="../assets/images/a0.jpg" class="img-circle w-56" style="margin-bottom: -7rem">
                         </div>
                     </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4" style="padding-top: 36px">
                                 <div class="p-a">
-                                    <span ng-if="vm.shop.phone"><i class="fa fa-phone"></i>&nbsp;&nbsp;{{ vm.shop.phone }}</span><br>
-                                    <span ng-if="vm.shop.whatsapp"><i class="fa fa-phone"></i>&nbsp;&nbsp;{{ vm.shop.whatsapp }}</span><br>
-                                    <span ng-if="vm.shop.line"><i class="fa fa-phone"></i>&nbsp;&nbsp;{{ vm.shop.line }}<br>
-                                    <span ng-if="vm.shop.wechat"><i class="fa fa-wechat"></i>&nbsp;&nbsp;{{ vm.shop.wechat }}</span><br>
-                                    <span ng-if="vm.shop.website"><i class="fa fa-compass"></i>&nbsp;&nbsp;{{ vm.shop.website }}</span><br>
+                                    <span ng-if="shop.phone"><i class="fa fa-phone"></i>&nbsp;&nbsp;
+                                        {{ shop.phone }}
+                                    </span><br>
+                                    <span ng-if="shop.website"><i class="fa fa-compass"></i>&nbsp;&nbsp;
+                                        <a ng-href="http://{{ shop.website }}" target="_blank">{{shop.website}}</a>
+                                    </span><br>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="p-a text-center">
-                                    <p class="text-lg m-t block">{{ vm.shop.username }}</p>
-                                    <p><small>{{ vm.shop.full_name || 'Just Come!'}}</small></p>
-                                    <p ng-show="vm.isUser()">
-                                        <a href class="btn btn-sm success" ng-click="vm.toggleShopSubscription()" ng-show="vm.isShopSubscribed">
+                                    <p class="text-lg m-t block">{{ shop.username }}</p>
+                                    <p><small>{{ shop.full_name }}</small></p>
+                                    <p ng-show="isUser()">
+                                        <a href class="btn btn-sm success" ng-click="toggleShopSubscription()" ng-show="isShopSubscribed">
                                             Subscribed <i class="fa fa-check"></i>
                                         </a>
-                                        <a href class="btn btn-sm primary" ng-click="vm.toggleShopSubscription()" ng-show="!vm.isShopSubscribed">
+                                        <a href class="btn btn-sm primary" ng-click="toggleShopSubscription()" ng-show="!isShopSubscribed">
                                             Subscribe
                                         </a>
                                     </p>
                                 </div>
                             </div>
                             <div class="col-md-4" style="padding-top: 36px">
-                                <p class="text-sm-right m-t block" ng-bind-html="vm.shop.bio | caption"></p>
+                                <p class="text-sm-right m-t block" ng-bind-html="shop.bio | caption"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="p-a text-center">
+                                <p><a href="" class="btn btn-sm primary">Contact</a></p>
+                                <div class="text-xs">
+                                    <em>Artworks: <strong>32</strong> Followers: <strong>50</strong></em>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,15 +56,15 @@
 
 
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="Search shop" autocomplete="off" ng-model="vm.searchText" ng-change="vm.searchFieldChanged()">
+                <input type="text" class="form-control" placeholder="Search..." autocomplete="off" ng-model="searchText" ng-change="searchFieldChanged()">
                 <span class="input-group-btn">
-                    <button class="btn b-a no-shadow white" type="button" ng-click="vm.goSearch();">Search Everywhere!</button>
+                    <button class="btn b-a no-shadow white" type="button" ng-click="goSearch();">Search Everywhere!</button>
                 </span>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1" style="padding-top: 16px">
-                <div class="row" infinite-scroll="vm.getMedia()" infinite-scroll-distance="1">
-                    <media-card media="m" class='col-md-3' ng-repeat="m in vm.media"></media-card>
+                <div class="row" infinite-scroll="getMedia()" infinite-scroll-distance="1">
+                    <media-card media="m" class='col-md-3' ng-repeat="m in arts"></media-card>
                 </div>
             </div>
         </div>
