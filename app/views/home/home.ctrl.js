@@ -24,17 +24,12 @@
 			    var newWidth = 600 + slides.length + 1;
 			    slides.push({
 				    image: 'images/banners/0.png',
-				    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+				    // text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
 				    id: currIndex++
 			    });
 			    slides.push({
 				    image: 'images/banners/1.png',
-				    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
-				    id: currIndex++
-			    });
-			    slides.push({
-				    image: 'images/banners/2.png',
-				    text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+				    // text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
 				    id: currIndex++
 			    });
 		    };
